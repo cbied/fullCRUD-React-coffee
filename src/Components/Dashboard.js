@@ -13,10 +13,12 @@ export class Dashboard extends Component {
     }
 
     componentDidMount() {
+        setTimeout(() => {
         axios
         .get('/api/coffee')
         .then(response => this.setState({ products: response.data }))
         .catch(error => console.log(`Dashboard-axiosGet: ${error}`))
+        }, 1000)
     }
 
 
@@ -43,7 +45,7 @@ export class Dashboard extends Component {
     })
         return (
             <div className='Dashboard'>
-                {products ? displayProducts : 'No products yet'}
+                { displayProducts }
             </div>
         )
     }

@@ -34,7 +34,7 @@ export class Form extends Component {
             this.setState({
 				name: '',
 				price: '',
-				image_url: '',
+				image_url: this.state.image_url,
 				redirect: false,
 			})
         }
@@ -61,12 +61,14 @@ export class Form extends Component {
             .post('/api/coffee', { name:name, price:price, image_url:image_url })
             .then(this.setState({ redirect:true }))
             .catch(error => console.log(`Form-axiosPost: ${error}`))
+
+    
     }
 
     handleEditSave() {
         let { name, price, image_url, } = this.state,
             { id } = this.props.match.params;
-
+           
         axios
             .put(`/api/coffee`, { id:id, name:name, price:price, image_url:image_url })
             .then(this.setState({ redirect:true }))
